@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country-Specific Data - World Educational Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .container {
+            padding: 20px;
+        }
+        .filters {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .filters button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .filters button:hover {
+            background-color: #45a049;
+        }
+        .data-display {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .data-display h2 {
+            margin-top: 0;
+        }
+        .data-list {
+            list-style: none;
+            padding: 0;
+        }
+        .data-list li {
+            margin: 5px 0;
+        }
+         a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Country-Specific Data - World Educational Data</h1>
+    </header>
+
+    <nav>
+        <a href={{url_for('home')}}>Home</a>
+        <a href={{url_for('country')}}>Country</a>
+         <a href={{url_for('dataoverview')}}>dataoverview</a>
+        <a href={{url_for('contact')}}>Contact</a>
+        <a href={{url_for('trends')}}>Trends</a>
+    </nav>
+
+     <div class="container">
+        <div class="filters" id="country-buttons">
+            <!-- Country buttons will be dynamically added here -->
+        </div>
+        <div class="data-display" id="country-data">
+            <h2>Select a country to view educational data</h2>
+        </div>
+    </div>
+
+    <script>
+        // Example country data
+        const countryData = {
+            USA: {
+                literacyRate: "99%",
+                enrollmentRate: "95%",
+                primaryEducation: "98%",
+                upperSecondaryEducation: "89%",
+                otherDetails: "High investment in STEM education."
+            },
+            India: {
+                literacyRate: "77.7%",
+                enrollmentRate: "89%",
+                primaryEducation: "91%",
+                upperSecondaryEducation: "75%",
+                otherDetails: "Focus on digital education in rural areas."
+            },
+            Germany: {
+                literacyRate: "99%",
+                enrollmentRate: "93%",
+                primaryEducation: "99%",
+                upperSecondaryEducation: "86%",
+                otherDetails: "secondary education system is prominent."
+            },
+            UK: {
+                literacyRate: "98%",
+                enrollmentRate: "83%",
+                primaryEducation: "89%",
+                upperSecondaryEducation: "76%",
+                otherDetails: "Dual education system is prominent."
+            },
+            Japan: {
+                literacyRate: "99%",
+                enrollmentRate: "98%",
+                primaryEducation: "100%",
+                upperSecondaryEducation: "95%",
+                otherDetails: "High emphasis on discipline and technology."
+            }
+        };
+
+        // Populate buttons dynamically
+        const countryButtons = document.getElementById("country-buttons");
+        for (const country in countryData) {
+            const button = document.createElement("button");
+            button.textContent = country;
+            button.onclick = () => displayData(country);
+            countryButtons.appendChild(button);
+        }
+
+        // Display country data
+        function displayData(country) {
+            const data = countryData[country];
+            const countryDataDiv = document.getElementById("country-data");
+            countryDataDiv.innerHTML = `
+                <h2>Educational Data for ${country}</h2>
+                <ul class="data-list">
+                    <li><strong>Literacy Rate:</strong> ${data.literacyRate}</li>
+                    <li><strong>Enrollment Rate:</strong> ${data.enrollmentRate}</li>
+                    <li><strong>Primary Education:</strong> ${data.primaryEducation}</li>
+                    <li><strong>Upper Secondary Education:</strong> ${data.upperSecondaryEducation}</li>
+                    <li><strong>Other Details:</strong> ${data.otherDetails}</li>
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>
