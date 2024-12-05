@@ -76,6 +76,32 @@ def delete(country_id):
         db.session.rollback()
         return jsonify({'message': 'An error occurred while deleting the data {}'.format(e)}), 500
 
+
+@app.route('/update/<int:country_id>', methods=['GET', 'POST'])
+def update(country_id):
+    country = Country.query.get_or_404(country_id)
+    print(country.country_id)
+    if not country:
+        return jsonify({'message': 'country not found'}), 404
+
+    if request.method == 'POST':
+        country.country_id = request.form['country_id']
+        country.country_name = request.form['country_name']
+        country.literacy_rate = request.form['literacy_rate']
+        country.enrollment_rate = request.form['enrollment_rate']
+        country.primary_education = request.form['primary_education']
+        country.secondary_education = request.form['secondary_education']
+
+        try:
+            db.session.commit()
+            return redirect('/country_specific_data')
+
+        except Exception as e:
+            db.session.rollback()
+            return "there is an issue while updating the record"
+    return render_template('update.html', country=country)
+
+
 if __name__ =='__main__':
     app.run(host='127.0.0.1',port=5003,debug=True)
 

@@ -49,6 +49,8 @@
                     <th>enrollment_rate</th>
                     <th>primary_education</th>
                     <th>secondary_education</th>
+                    <th>edit</th>
+                    <th>delete</th>
 
 
                 </tr>
@@ -65,6 +67,7 @@
                 <td>{{country.primary_education}}</td>
                 <td>{{country.secondary_education}}</td>
                 <td><button onclick="confirmDelete({{country.country_id}})">delete</button></td>
+                <td><button><a href="/update/{{country.country_id}}">edit</a></button></td>
 
             </tr>
         {% endfor %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<h1>update task</h1>
+<form method="POST" enctype="application/x-www-form-urlencoded">
+    <label for="country_id">country_id:</label>
+    <input type="text" id="country_id" name="country_id" value="{{ country.country_id}}" required><br><br>
+
+    <label for="country_name">country_name:</label>
+    <input type="text" id="country_name" name="country_name" value="{{ country.country_name}}" required><br><br>
+
+    <label for="literacy_rate">literacy_rate:</label>
+    <input type="text" id="literacy_rate" name="literacy_rate" value="{{country.literacy_rate}}" required><br><br>
+
+    <label for="enrollment_rate">enrollment_rate:</label>
+    <input type="text" id="enrollment_rate" name="enrollment_rate" value="{{country.enrollment_rate}}" required><br><br>
+
+    <label for="primary_education">primary_education:</label>
+    <input type="text" id="primary_education" name="primary_education" value="{{country.primary_education}}" required><br><br>
+
+    <label for="secondary_education">secondary_education:</label>
+    <input type="text" id="secondary_education" name="secondary_education" value="{{country.secondary_education}}" required><br><br>
+
+    <input type="submit" value="update"> <a href="/country_specific_data"> country specific data</a>
+</form>
+
+{% endblock %}
