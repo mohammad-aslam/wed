@@ -37,6 +37,7 @@
         tr:hover {
             background: #333;
         }
+
     </style>
     <div class="container">
         <h2>Country Specific data</h2>
@@ -66,8 +67,16 @@
                 <td>{{country.enrollment_rate}}</td>
                 <td>{{country.primary_education}}</td>
                 <td>{{country.secondary_education}}</td>
-                <td><button onclick="confirmDelete({{country.country_id}})">delete</button></td>
-                <td><button><a href="/update/{{country.country_id}}">edit</a></button></td>
+                <td><button onclick="confirmDelete({{country.country_id}})" style="display: inline-block;
+                 padding: 10px; border: none; border-radius: 5px; background-color: #007BFF;
+                 color: white; font-size: 14px; cursor: pointer; text-decoration: none;
+                 text-align: center; transition: background-color 0.3s ease;">delete</button></td>
+                <td><a href="/update/{{country.country_id}}" style="margin: 0em;padding-block: 1px;
+                padding-inline: 6px;letter-spacing: normal;word-spacing: normal;line-height: normal;
+                text-transform: none;text-indent: 0px;text-shadow: none;display: inline-block;
+                padding:10px; border: none; border-radius: 5px; background-color: #007BFF;
+                color: white; font-size: 14px; cursor: pointer; text-decoration: none;
+                text-align: center; transition: background-color 0.3s ease;">Update</a>
 
             </tr>
         {% endfor %}

@@ -5,6 +5,8 @@ from utils.db import db
 from models.country import *
 
 
+
+
 app =  Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///country.db'
 
