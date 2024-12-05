@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
      <title>World Educational Data</title>
     <style>
        body {
@@ -57,28 +56,20 @@
         }
 
     </style>
-</head>
-<body>
+
+
     <!-- Header -->
-    <header>
+    <br><header>
         <h1>World Educational Data</h1>
         <p>Home</p>
     </header>
 
     <!-- Navigation -->
-    <nav>
-        <a href={{url_for('home')}}>Home</a>
-        <a href={{url_for('country')}}>Country</a>
-         <a href={{url_for('dataoverview')}}>dataoverview</a>
-        <a href={{url_for('contact')}}>Contact</a>
-        <a href={{url_for('trends')}}>Trends</a>
-    </nav>
+
 
     <!-- Main Content -->
          <div class="overlay"></div>
-    <div class="content">
-        <h1>World Educational Data</h1>
-        <p>
+<p>
             Explore the world's educational data through insightful visualizations and meaningful statistics.
 
         </p>
@@ -86,7 +77,6 @@
             Our mission is to provide a clear representation of global education trends, helping researchers,
             policymakers, and educators make informed decisions.
         </p>
-    </div>
 
-</body>
-</html>
+
+{% endblock %}

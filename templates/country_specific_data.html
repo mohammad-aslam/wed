@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Country Specific Page{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: grey;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            background-color: #f9f9f9;
+            color: #1DB954;
+        }
+        tr:hover {
+            background: #333;
+        }
+    </style>
+    <div class="container">
+        <h2>Country Specific data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>country_id</th>
+                    <th> country_name</th>
+                    <th>literacy_rate</th>
+                    <th>enrollment_rate</th>
+                    <th>primary_education</th>
+                    <th>secondary_education</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                {% for country in content %}
+                <br>
+                <td>{{ country.country_id }}</td>
+                <td>{{ country.country_name }}</td>
+                <td>{{ country.literacy_rate }}</td>
+                <td>{{country.enrollment_rate}}</td>
+                <td>{{country.primary_education}}</td>
+                <td>{{country.secondary_education}}</td>
+                <td><button onclick="confirmDelete({{country.country_id}})">delete</button></td>
+
+            </tr>
+        {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+
+<script>
+        function confirmDelete(country_id) {
+            // Show a confirmation alert
+            const confirmation = confirm("Are you sure you want to delete this data?");
+            if (confirmation) {
+                // If user confirms, proceed with the delete request
+                fetch(`/delete/${country_id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message); // Show response message
+                    if (data.message === 'country deleted successfully') {
+                        window.location.reload(); // Optionally, refresh the page
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
+{% endblock %}
